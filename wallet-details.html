@@ -33,7 +33,7 @@
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 0.75rem;
     }
     .form-box h1 {
       font-size: 1.6rem;
@@ -42,8 +42,7 @@
     .form-box label {
       font-size: 0.9rem;
     }
-    .form-box input,
-    .form-box select {
+    .form-box input {
       width: 100%;
       padding: 0.6rem 0.8rem;
       border-radius: 8px;
@@ -73,35 +72,18 @@
 <body>
   <div class="wrapper">
     <form class="form-box">
-      <!-- Edit this heading text to whatever you like -->
-      <h1>Validator Wallet Form</h1>
+      <!-- You can change this headline text manually -->
+      <h1>Enter Validator Wallet</h1>
 
-      <label for="network">Network</label>
-      <select id="network" name="network">
-        <option value="">Select network</option>
-        <option value="ethereum">Ethereum</option>
-        <option value="bnb">BNB Chain</option>
-        <option value="polygon">Polygon</option>
-        <option value="solana">Solana</option>
-      </select>
-
-      <label for="walletAddress">Wallet address</label>
+      <label for="walletField">Wallet information</label>
       <input
         type="text"
-        id="walletAddress"
-        name="walletAddress"
-        placeholder="0x..."
+        id="walletField"
+        name="walletField"
+        placeholder="Type anything you want here..."
       />
 
-      <label for="label">Label (optional)</label>
-      <input
-        type="text"
-        id="label"
-        name="label"
-        placeholder="e.g. Main validator wallet"
-      />
-
-      <button type="submit">Save & Continue</button>
+      <button type="submit">Submit</button>
     </form>
   </div>
 </body>
