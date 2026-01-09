@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect Wallet - Web3 Portal</title>
+    <title>Connect Wallet - Node Validator Hub</title>
     <style>
         * {
             margin: 0;
@@ -126,9 +126,15 @@
             color: #00d4ff;
         }
 
-        /* Featured Wallets - First Row */
-        .featured-wallets .wallets-grid {
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        .wallet-cta {
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: #b0b0b0;
+        }
+
+        .wallet-cta span {
+            color: #00d4ff;
+            font-weight: 600;
         }
 
         /* Responsive */
@@ -158,98 +164,79 @@
 
         <div class="header">
             <h1>Connect Your Wallet</h1>
-            <p>Select your preferred wallet to start using Web3 Portal</p>
+            <p>Select your preferred wallet to start using Node Validator Hub</p>
         </div>
 
-        <!-- Featured/Popular Wallets -->
+        <!-- Popular Wallets -->
         <div class="wallets-section featured-wallets">
             <h2 class="section-title">Popular Wallets</h2>
             <div class="wallets-grid">
                 <div class="wallet-card">
                     <div class="wallet-icon">🦊</div>
                     <div class="wallet-name">MetaMask</div>
+                    <div class="wallet-cta">Connect with <span>MetaMask</span></div>
                 </div>
                 <div class="wallet-card">
-                    <div class="wallet-icon">⚡</div>
-                    <div class="wallet-name">Trust Wallet</div>
+                    <div class="wallet-icon">🟦</div>
+                    <div class="wallet-name">Coinbase Wallet</div>
+                    <div class="wallet-cta">Connect with <span>Coinbase Wallet</span></div>
                 </div>
                 <div class="wallet-card">
-                    <div class="wallet-icon">🔷</div>
-                    <div class="wallet-name">Coinbase</div>
-                </div>
-                <div class="wallet-card">
-                    <div class="wallet-icon">🟠</div>
-                    <div class="wallet-name">Uniswap</div>
+                    <div class="wallet-icon">🟣</div>
+                    <div class="wallet-name">Phantom</div>
+                    <div class="wallet-cta">Connect with <span>Phantom</span></div>
                 </div>
                 <div class="wallet-card">
                     <div class="wallet-icon">🛡️</div>
                     <div class="wallet-name">Ledger</div>
-                </div>
-                <div class="wallet-card">
-                    <div class="wallet-icon">🐰</div>
-                    <div class="wallet-name">Rabby Wallet</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Premium Wallets -->
-        <div class="wallets-section">
-            <h2 class="section-title">Premium & Hardware Wallets</h2>
-            <div class="wallets-grid">
-                <div class="wallet-card">
-                    <div class="wallet-icon">💳</div>
-                    <div class="wallet-name">Ledger Live</div>
-                </div>
-                <div class="wallet-card">
-                    <div class="wallet-icon">🎯</div>
-                    <div class="wallet-name">Trezor</div>
-                </div>
-                <div class="wallet-card">
-                    <div class="wallet-icon">🔐</div>
-                    <div class="wallet-name">Gnosis Safe</div>
-                </div>
-                <div class="wallet-card">
-                    <div class="wallet-icon">🚀</div>
-                    <div class="wallet-name">Phantom</div>
+                    <div class="wallet-cta">Connect with <span>Ledger</span></div>
                 </div>
                 <div class="wallet-card">
                     <div class="wallet-icon">🌈</div>
                     <div class="wallet-name">Rainbow</div>
+                    <div class="wallet-cta">Connect with <span>Rainbow</span></div>
                 </div>
                 <div class="wallet-card">
-                    <div class="wallet-icon">⚙️</div>
-                    <div class="wallet-name">Zerion</div>
+                    <div class="wallet-icon">🟢</div>
+                    <div class="wallet-name">Trust Wallet</div>
+                    <div class="wallet-cta">Connect with <span>Trust Wallet</span></div>
                 </div>
             </div>
         </div>
 
-        <!-- DeFi & Specialized Wallets -->
+        <!-- Hardware & Multi-sig -->
         <div class="wallets-section">
-            <h2 class="section-title">DeFi & Specialized</h2>
+            <h2 class="section-title">Hardware & Multi-Sig</h2>
             <div class="wallets-grid">
                 <div class="wallet-card">
-                    <div class="wallet-icon">🏦</div>
-                    <div class="wallet-name">Aave</div>
+                    <div class="wallet-icon">💳</div>
+                    <div class="wallet-name">Ledger Live</div>
+                    <div class="wallet-cta">Connect with <span>Ledger Live</span></div>
                 </div>
                 <div class="wallet-card">
-                    <div class="wallet-icon">💱</div>
-                    <div class="wallet-name">1inch Wallet</div>
+                    <div class="wallet-icon">🎯</div>
+                    <div class="wallet-name">Trezor</div>
+                    <div class="wallet-cta">Connect with <span>Trezor</span></div>
                 </div>
                 <div class="wallet-card">
-                    <div class="wallet-icon">🔄</div>
-                    <div class="wallet-name">Loopring</div>
+                    <div class="wallet-icon">🔐</div>
+                    <div class="wallet-name">Safe (Gnosis Safe)</div>
+                    <div class="wallet-cta">Connect with <span>Safe</span></div>
                 </div>
                 <div class="wallet-card">
-                    <div class="wallet-icon">🎮</div>
-                    <div class="wallet-name">Sequence</div>
+                    <div class="wallet-icon">🚀</div>
+                    <div class="wallet-name">Rabby Wallet</div>
+                    <div class="wallet-cta">Connect with <span>Rabby</span></div>
                 </div>
                 <div class="wallet-card">
-                    <div class="wallet-icon">📱</div>
-                    <div class="wallet-name">imToken</div>
+                    <div class="wallet-icon">🌍</div>
+                    <div class="wallet-name">OKX Wallet</div>
+                    <div class="wallet-cta">Connect with <span>OKX Wallet</span></div>
                 </div>
                 <div class="wallet-card">
-                    <div class="wallet-icon">🌐</div>
-                    <div class="wallet-name">XAMaN Wallet</div>
+                    <div class="wallet-icon">💰</div>
+                    <div class="wallet-name">SafePal</div>
+                    <div class="wallet-cta">Connect with <span>SafePal</span></div>
                 </div>
             </div>
         </div>
@@ -259,62 +246,55 @@
             <h2 class="section-title">Mobile & Cross-Chain</h2>
             <div class="wallets-grid">
                 <div class="wallet-card">
+                    <div class="wallet-icon">📱</div>
+                    <div class="wallet-name">imToken</div>
+                    <div class="wallet-cta">Connect with <span>imToken</span></div>
+                </div>
+                <div class="wallet-card">
                     <div class="wallet-icon">📲</div>
                     <div class="wallet-name">TokenPocket</div>
+                    <div class="wallet-cta">Connect with <span>TokenPocket</span></div>
                 </div>
                 <div class="wallet-card">
                     <div class="wallet-icon">🪗</div>
-                    <div class="wallet-name">BitKeep</div>
-                </div>
-                <div class="wallet-card">
-                    <div class="wallet-icon">🌍</div>
-                    <div class="wallet-name">OKX Wallet</div>
-                </div>
-                <div class="wallet-card">
-                    <div class="wallet-icon">💰</div>
-                    <div class="wallet-name">SafePal</div>
-                </div>
-                <div class="wallet-card">
-                    <div class="wallet-icon">🔗</div>
-                    <div class="wallet-name">Bridge Wallet</div>
+                    <div class="wallet-name">Bitget Wallet (BitKeep)</div>
+                    <div class="wallet-cta">Connect with <span>Bitget Wallet</span></div>
                 </div>
                 <div class="wallet-card">
                     <div class="wallet-icon">🎪</div>
                     <div class="wallet-name">Atomic Wallet</div>
+                    <div class="wallet-cta">Connect with <span>Atomic Wallet</span></div>
+                </div>
+                <div class="wallet-card">
+                    <div class="wallet-icon">🎮</div>
+                    <div class="wallet-name">Sequence</div>
+                    <div class="wallet-cta">Connect with <span>Sequence</span></div>
+                </div>
+                <div class="wallet-card">
+                    <div class="wallet-icon">🔗</div>
+                    <div class="wallet-name">Bridge Wallet</div>
+                    <div class="wallet-cta">Connect with <span>Bridge Wallet</span></div>
                 </div>
             </div>
         </div>
 
-        <!-- Development & Advanced -->
+        <!-- Other Wallets via WalletConnect -->
         <div class="wallets-section">
-            <h2 class="section-title">Development & Advanced</h2>
+            <h2 class="section-title">Other Wallets</h2>
             <div class="wallets-grid">
                 <div class="wallet-card">
-                    <div class="wallet-icon">⚛️</div>
-                    <div class="wallet-name">Web3.js</div>
-                </div>
-                <div class="wallet-card">
-                    <div class="wallet-icon">🧪</div>
-                    <div class="wallet-name">Ethers.js</div>
-                </div>
-                <div class="wallet-card">
-                    <div class="wallet-icon">🛠️</div>
-                    <div class="wallet-name">Hardhat</div>
-                </div>
-                <div class="wallet-card">
-                    <div class="wallet-icon">📦</div>
-                    <div class="wallet-name">Truffle</div>
-                </div>
-                <div class="wallet-card">
-                    <div class="wallet-icon">🔍</div>
-                    <div class="wallet-name">Etherscan</div>
-                </div>
-                <div class="wallet-card">
-                    <div class="wallet-icon">🧬</div>
-                    <div class="wallet-name">API3</div>
+                    <!-- Simple text version of WalletConnect "wave" icon -->
+                    <div class="wallet-icon">
+                        <span style="font-size: 1.8rem;">🌀</span>
+                    </div>
+                    <div class="wallet-name">Other Wallets (WalletConnect)</div>
+                    <div class="wallet-cta">
+                        Connect hundreds of wallets via <span>WalletConnect</span>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </body>
 </html>
