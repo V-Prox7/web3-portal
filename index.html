@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 Portal - Secure Wallet Connection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f2e 0%, #1a1a3f 100%);
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(15, 15, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #00d4ff;
+        }
+
+        .btn-connect {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: #000;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-connect:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 204, 0.05));
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .accent {
+            color: #00d4ff;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            margin-bottom: 0.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .subtitle {
+            color: #808080;
+            font-size: 1rem !important;
+            margin-bottom: 2rem !important;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-large {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Features Section */
+        .features {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(30, 30, 60, 0.8);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.2);
+            background: rgba(30, 30, 60, 0.95);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #a0a0a0;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 4rem 2rem;
+            background: rgba(30, 30, 60, 0.6);
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .stats h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: #a0a0a0;
+            font-size: 1.1rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 204, 0.05));
+            border-radius: 12px;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .cta p {
+            color: #b0b0b0;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(10, 10, 30, 0.9);
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 2rem;
+            text-align: center;
+            color: #808080;
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #00d4ff;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🔷 Web3 Portal</div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#stats">Stats</a></li>
+                <li><a href="connection.html" class="btn-connect">Connect Wallet</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Web3 Portal<span class="accent">*</span></h1>
+            <p>A secure bridge connecting wallets and decentralized applications on the blockchain.</p>
+            <p class="subtitle">Enable seamless communication between Web3 apps and your crypto wallets.</p>
+            <a href="connection.html" class="btn btn-primary">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2>Quick Start</h2>
+        <div class="features-grid">
+            <div class="feature-card" onclick="location.href='connection.html'">
+                <div class="feature-icon">🔗</div>
+                <h3>Multi-Chain</h3>
+                <p>Connect across multiple blockchain networks seamlessly</p>
+            </div>
+            <div class="feature-card" onclick="location.href='connection.html'">
+                <div class="feature-icon">🔐</div>
+                <h3>Secure</h3>
+                <p>Enterprise-grade encryption for all transactions</p>
+            </div>
+            <div class="feature-card" onclick="location.href='connection.html'">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Instant wallet connections with minimal latency</p>
+            </div>
+            <div class="feature-card" onclick="location.href='connection.html'">
+                <div class="feature-icon">🛡️</div>
+                <h3>Protected</h3>
+                <p>Advanced security against unauthorized access</p>
+            </div>
+            <div class="feature-card" onclick="location.href='connection.html'">
+                <div class="feature-icon">📊</div>
+                <h3>Analytics</h3>
+                <p>Real-time insights into your wallet activity</p>
+            </div>
+            <div class="feature-card" onclick="location.href='connection.html'">
+                <div class="feature-icon">🌐</div>
+                <h3>Global</h3>
+                <p>Support for 100+ wallet providers worldwide</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats">
+        <h2>Our Impact</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>50K+</h3>
+                <p>Active Wallets</p>
+            </div>
+            <div class="stat-card">
+                <h3>200K+</h3>
+                <p>Transactions</p>
+            </div>
+            <div class="stat-card">
+                <h3>100+</h3>
+                <p>Supported dApps</p>
+            </div>
+            <div class="stat-card">
+                <h3>99.9%</h3>
+                <p>Uptime SLA</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Ready to Secure Your Web3 Experience?</h2>
+        <p>Connect your wallet now and experience seamless dApp integration.</p>
+        <a href="connection.html" class="btn btn-primary btn-large">Connect Your Wallet</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Web3 Portal. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </footer>
+</body>
+</html>
