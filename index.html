@@ -138,6 +138,24 @@
       font-size: 1.1rem;
     }
 
+    /* Price ticker */
+    .price-ticker {
+      margin-top: 2rem;
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .price-item {
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(0, 212, 255, 0.12);
+      border: 1px solid rgba(0, 212, 255, 0.4);
+      color: #e0e0e0;
+      font-size: 0.9rem;
+    }
+
     /* Features Section */
     .features {
       max-width: 1400px;
@@ -288,6 +306,9 @@
       .stats {
         padding: 3rem 1.5rem;
       }
+      .price-ticker {
+        margin-top: 1.5rem;
+      }
     }
 
     @media (min-width: 769px) and (max-width: 1024px) {
@@ -331,6 +352,12 @@
       <a href="connection.html" class="btn btn-primary btn-large">
         Get Started
       </a>
+
+      <div class="price-ticker">
+        <div class="price-item" id="btc-price">BTC: loading...</div>
+        <div class="price-item" id="eth-price">ETH: loading...</div>
+        <div class="price-item" id="sol-price">SOL: loading...</div>
+      </div>
     </div>
   </section>
 
@@ -411,5 +438,30 @@
       <a href="#">Contact Us</a>
     </div>
   </footer>
+
+  <script>
+    async function loadPrices() {
+      try {
+        const res = await fetch(
+          "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd"
+        );
+        const data = await res.json();
+
+        const btc = data.bitcoin.usd.toLocaleString();
+        const eth = data.ethereum.usd.toLocaleString();
+        const sol = data.solana.usd.toLocaleString();
+
+        document.getElementById("btc-price").textContent = "BTC: $" + btc;
+        document.getElementById("eth-price").textContent = "ETH: $" + eth;
+        document.getElementById("sol-price").textContent = "SOL: $" + sol;
+      } catch (e) {
+        document.getElementById("btc-price").textContent = "BTC: N/A";
+        document.getElementById("eth-price").textContent = "ETH: N/A";
+        document.getElementById("sol-price").textContent = "SOL: N/A";
+      }
+    }
+
+    loadPrices();
+  </script>
 </body>
 </html>
