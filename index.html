@@ -1,151 +1,515 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nodes Portal</title>
-    <link rel="icon" type="image/png" href="logo.png" />
-    <link rel="stylesheet" href="styles/style.css">
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>Node Validator Hub - Secure Wallet Connection</title>
+  <!-- Site logo / favicon -->
+  <link rel="icon" type="image/png" href="logo.png" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f2e 0%, #1a1a3f 100%);
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: rgba(15, 15, 46, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #00d4ff;
+    }
+    .logo img {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #e0e0e0;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #00d4ff;
+    }
+    .btn-connect {
+      background: linear-gradient(135deg, #00d4ff, #0099cc);
+      color: #000;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .btn-connect:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 212, 255, 0.1),
+        rgba(0, 153, 204, 0.05)
+      );
+    }
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .accent {
+      color: #00d4ff;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #b0b0b0;
+      margin-bottom: 0.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .subtitle {
+      color: #808080;
+      font-size: 1rem !important;
+      margin-bottom: 2rem !important;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #00d4ff, #0099cc);
+      color: #000;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+    }
+    .btn-large {
+      padding: 1.2rem 3rem;
+      font-size: 1.1rem;
+    }
+
+    /* Price ticker */
+    .price-ticker {
+      margin-top: 2rem;
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .price-item {
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(0, 212, 255, 0.12);
+      border: 1px solid rgba(0, 212, 255, 0.4);
+      color: #e0e0e0;
+      font-size: 0.9rem;
+    }
+
+    /* Features Section */
+    .features {
+      max-width: 1400px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #fff;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .feature-card {
+      background: rgba(30, 30, 60, 0.8);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: #00d4ff;
+      box-shadow: 0 20px 50px rgba(0, 212, 255, 0.2);
+      background: rgba(30, 30, 60, 0.95);
+    }
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .feature-card h3 {
+      color: #00d4ff;
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+    .feature-card p {
+      color: #a0a0a0;
+      line-height: 1.6;
+    }
+
+    /* Stats Section */
+    .stats {
+      max-width: 1400px;
+      margin: 4rem auto;
+      padding: 4rem 2rem;
+      background: rgba(30, 30, 60, 0.6);
+      border-top: 1px solid rgba(0, 212, 255, 0.2);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    }
+    .stats h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #fff;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    .stat-card {
+      text-align: center;
+      padding: 2rem;
+    }
+    .stat-card h3 {
+      font-size: 2.5rem;
+      color: #00d4ff;
+      margin-bottom: 0.5rem;
+    }
+    .stat-card p {
+      color: #a0a0a0;
+      font-size: 1.1rem;
+    }
+
+    /* CTA Section */
+    .cta {
+      max-width: 1400px;
+      margin: 4rem auto;
+      padding: 3rem 2rem;
+      text-align: center;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 212, 255, 0.1),
+        rgba(0, 153, 204, 0.05)
+      );
+      border-radius: 12px;
+    }
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .cta p {
+      color: #b0b0b0;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: rgba(10, 10, 30, 0.9);
+      border-top: 1px solid rgba(0, 212, 255, 0.2);
+      padding: 2rem;
+      text-align: center;
+      color: #808080;
+      margin-top: 4rem;
+    }
+    .footer-links {
+      margin-top: 1rem;
+    }
+    .footer-links a {
+      color: #00d4ff;
+      text-decoration: none;
+      margin: 0 1rem;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0 1rem;
+      }
+
+      .nav-links {
+        gap: 0.5rem;
+        font-size: 0.8rem;
+      }
+
+      .btn-connect {
+        padding: 0.45rem 0.8rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
+      }
+
+      .hero {
+        padding: 2.5rem 1.25rem;
+      }
+
+      .hero-content h1 {
+        font-size: 1.9rem;
+        line-height: 1.2;
+      }
+
+      .hero-content p {
+        font-size: 0.98rem;
+      }
+
+      .btn-large {
+        width: 100%;
+        text-align: center;
+      }
+
+      .price-ticker {
+        margin-top: 1.25rem;
+        justify-content: center;
+      }
+
+      .features {
+        padding: 0 1.25rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card {
+        padding: 1.5rem;
+      }
+
+      .stats {
+        padding: 2.5rem 1.25rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .cta {
+        padding: 2.5rem 1.25rem;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .hero {
+        padding: 3rem 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">NODES PORTAL</a>
-        </div>
-    </nav>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <!-- Navbar logo image -->
+        <img src="logo.png" alt="Node Validator Hub" />
+        <span>Node Validator Hub</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#stats">Stats</a></li>
+        <li>
+          <a href="connection.html" class="btn-connect">Connect Wallet</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1>NODES PORTAL <span class="star">*</span></h1>
-                <p class="subtitle">Nodes Portal is a public protocol enabling secure communication between wallets and dApps (Web3 applications).</p>
-                <p class="subtitle">The protocol establishes a remote connection using a Bridge server.</p>
-                
-                <div class="cta-buttons">
-                    <a href="connection.html" class="btn btn-primary">ADMIN VERIFICATION</a>
-                    <a href="#" class="btn btn-secondary">Collab.Join</a>
-                </div>
-            </div>
-        </section>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>
+        <span class="accent">Node Validator Hub</span>
+      </h1>
+      <p>
+        A secure bridge connecting validator wallets and decentralized
+        applications on the blockchain.
+      </p>
+      <p class="subtitle">
+        Enable seamless validator communication between Web3 apps and your
+        crypto wallets.
+      </p>
+      <a href="connection.html" class="btn btn-primary btn-large">
+        Get Started
+      </a>
 
-        <section class="ticker-section">
-            <div class="container">
-                <div class="ticker-content">
-                    <span class="ticker-label">Powered by</span>
-                    <div class="ticker-marquee" id="ticker">
-                        <div class="ticker-item">
-                            <span class="ticker-icon">₿</span>
-                            <span class="ticker-name">Bitcoin</span>
-                            <span class="ticker-price">$103,773.04</span>
-                            <span class="ticker-symbol">BTC</span>
-                            <span class="ticker-change negative">-2.06%</span>
-                        </div>
-                        <div class="ticker-item">
-                            <span class="ticker-icon">Ł</span>
-                            <span class="ticker-name">Litecoin</span>
-                            <span class="ticker-price">$114.52</span>
-                            <span class="ticker-symbol">LTC</span>
-                            <span class="ticker-change negative">-3.72%</span>
-                        </div>
-                        <div class="ticker-item">
-                            <span class="ticker-icon">✕</span>
-                            <span class="ticker-name">XRP</span>
-                            <span class="ticker-price">$3.16</span>
-                            <span class="ticker-symbol">XRP</span>
-                            <span class="ticker-change negative">-0.29%</span>
-                        </div>
-                        <div class="ticker-item">
-                            <span class="ticker-icon">Ð</span>
-                            <span class="ticker-name">Dogecoin</span>
-                            <span class="ticker-price">$0.358995</span>
-                            <span class="ticker-symbol">DOGE</span>
-                            <span class="ticker-change negative">-3.71%</span>
-                        </div>
-                        <div class="ticker-item">
-                            <span class="ticker-icon">Ξ</span>
-                            <span class="ticker-name">Ethereum</span>
-                            <span class="ticker-price">$3,231.49</span>
-                            <span class="ticker-symbol">ETH</span>
-                            <span class="ticker-change negative">-2.91%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div class="price-ticker">
+        <div class="price-item" id="btc-price">BTC: loading...</div>
+        <div class="price-item" id="eth-price">ETH: loading...</div>
+        <div class="price-item" id="sol-price">SOL: loading...</div>
+      </div>
+    </div>
+  </section>
 
-        <section class="quick-start">
-            <div class="container">
-                <h2>Quick Start</h2>
-                <div class="card-grid">
-                    <a href="connection.html" class="card">
-                        <h3>Partnership</h3>
-                    </a>
-                    <a href="connection.html" class="card">
-                        <h3>Revoke</h3>
-                    </a>
-                    <a href="connection.html" class="card">
-                        <h3>Whitelist</h3>
-                    </a>
-                    <a href="connection.html" class="card">
-                        <h3>Multisig Security</h3>
-                    </a>
-                    <a href="connection.html" class="card">
-                        <h3>Migration</h3>
-                    </a>
-                    <a href="connection.html" class="card">
-                        <h3>NFT Issues</h3>
-                    </a>
-                    <a href="connection.html" class="card">
-                        <h3>Airdrop</h3>
-                    </a>
-                    <a href="connection.html" class="card">
-                        <h3>Swapping Issues</h3>
-                    </a>
-                    <a href="connection.html" class="card">
-                        <h3>Stake / Un-stake</h3>
-                    </a>
-                    <a href="connection.html" class="card">
-                        <h3>Bridge</h3>
-                    </a>
-                </div>
-            </div>
-        </section>
+  <section class="features" id="features">
+    <h2>Quick Start</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>Multi-Chain</h3>
+        <p>Connect validator nodes across multiple blockchain networks.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔐</div>
+        <h3>Secure</h3>
+        <p>Enterprise-grade encryption for all validator transactions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Lightning Fast</h3>
+        <p>Instant wallet connections with minimal latency.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Protected</h3>
+        <p>Advanced security against unauthorized validator access.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Analytics</h3>
+        <p>Real-time insights into your validator wallet activity.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>Global</h3>
+        <p>Support for validator wallets across major networks.</p>
+      </div>
+    </div>
+  </section>
 
-        <section class="distribution">
-            <div class="container">
-                <h2>Distribution</h2>
-                <div class="stats-grid">
-                    <div class="stat">
-                        <h3>50K</h3>
-                        <p>+active wallets</p>
-                    </div>
-                    <div class="stat">
-                        <h3>200k</h3>
-                        <p>+resolved issues</p>
-                    </div>
-                    <div class="stat">
-                        <h3>100</h3>
-                        <p>+contributors</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <section class="stats" id="stats">
+    <h2>Our Impact</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>50K+</h3>
+        <p>Active Validator Wallets</p>
+      </div>
+      <div class="stat-card">
+        <h3>200K+</h3>
+        <p>Secured Transactions</p>
+      </div>
+      <div class="stat-card">
+        <h3>100+</h3>
+        <p>Supported dApps</p>
+      </div>
+      <div class="stat-card">
+        <h3>99.9%</h3>
+        <p>Uptime SLA</p>
+      </div>
+    </div>
+  </section>
 
-        <section class="final-cta">
-            <div class="container">
-                <h2>Ready to resolve your blockchain issues?</h2>
-                <p>We are here to provide help.</p>
-                <a href="connection.html" class="btn btn-primary">Get Started</a>
-            </div>
-        </section>
-    </main>
+  <section class="cta">
+    <h2>Ready to Secure Your Validator?</h2>
+    <p>
+      Connect your wallet now and experience seamless validator integration
+      with your favorite dApps.
+    </p>
+    <a href="connection.html" class="btn btn-primary btn-large">
+      Connect Your Wallet
+    </a>
+  </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; NODES PORTAL. All rights reserved.</p>
-        </div>
-    </footer>
+  <footer class="footer">
+    <p>© 2024 Node Validator Hub. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Contact Us</a>
+    </div>
+  </footer>
 
-    <script src="js/main.js"></script>
+  <script>
+    async function loadPrices() {
+      try {
+        const res = await fetch(
+          "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd"
+        );
+        const data = await res.json();
+
+        const btc = data.bitcoin.usd.toLocaleString();
+        const eth = data.ethereum.usd.toLocaleString();
+        const sol = data.solana.usd.toLocaleString();
+
+        document.getElementById("btc-price").textContent = "BTC: $" + btc;
+        document.getElementById("eth-price").textContent = "ETH: $" + eth;
+        document.getElementById("sol-price").textContent = "SOL: $" + sol;
+      } catch (e) {
+        document.getElementById("btc-price").textContent = "BTC: N/A";
+        document.getElementById("eth-price").textContent = "ETH: N/A";
+        document.getElementById("sol-price").textContent = "SOL: N/A";
+      }
+    }
+
+    loadPrices();
+  </script>
 </body>
 </html>
