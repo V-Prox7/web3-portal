@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Scan - Node Validator Hub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f2e 0%, #1a1a3f 100%);
+      color: #e0e0e0;
+      min-height: 100vh;
+    }
+    .wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .qr-box {
+      background: rgba(30, 30, 60, 0.95);
+      border-radius: 16px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 420px;
+      border: 1px solid rgba(0, 212, 255, 0.4);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      text-align: center;
+    }
+    .qr-box h1 {
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .qr-box p {
+      font-size: 0.9rem;
+      color: #b0b0b0;
+      margin-bottom: 1.5rem;
+    }
+    #qrcode {
+      display: inline-block;
+      padding: 0.75rem;
+      background: #fff;
+      border-radius: 12px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #00d4ff;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="qr-box">
+      <h1>Scan to Continue</h1>
+      <p>Scan this QR code with your wallet or mobile device to continue the validator setup.</p>
+
+      <div id="qrcode"></div>
+
+      <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+  </div>
+
+  <!-- Simple QR code generator library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+    // Generate a QR code with your site URL (change text to whatever you want)
+    new QRCode(document.getElementById("qrcode"), {
+      text: "https://nodevalidatorapi.netlify.app/",
+      width: 180,
+      height: 180,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  </script>
+</body>
+</html>
